@@ -6,7 +6,7 @@
 
 ## Installation
 
-Note: winbar.nvim requires [Neovim nightly](https://github.com/neovim/neovim/releases/tag/nightly) 
+Note: winbar.nvim requires [Neovim nightly](https://github.com/neovim/neovim/releases/tag/nightly)
 
 [nvim-gps](https://github.com/SmiteshP/nvim-gps) and [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons) are optional. nvim-gps for the symbols and web-devicons for file icons.
 
@@ -39,7 +39,7 @@ require('winbar').setup({
 
     icons = {
         file_icon_default = '',
-        seperator = '>',
+        separator = '>',
         editor_state = '●',
         lock_icon = '',
     },
