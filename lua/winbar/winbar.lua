@@ -29,6 +29,7 @@ local winbar_file = function()
     local value = ''
     local file_icon = ''
 
+    file_path = file_path:gsub('%\\', '/')
     file_path = file_path:gsub('^%.', '')
     file_path = file_path:gsub('^%/', '')
 
