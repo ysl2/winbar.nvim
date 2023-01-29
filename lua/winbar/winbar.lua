@@ -31,6 +31,10 @@ local winbar_file = function()
 
     file_path = file_path:gsub('%\\', '/')
     file_path = file_path:gsub('^%.', '')
+    if file_path:find('^/') == nil then
+        file_path = '/' .. file_path
+    end
+    file_path = file_path:gsub('%/', '/ ')
     file_path = file_path:gsub('^%/', '')
 
     if not f.isempty(filename) then
