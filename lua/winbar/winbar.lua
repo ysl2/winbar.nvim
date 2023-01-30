@@ -36,6 +36,9 @@ local winbar_file = function()
     end
     file_path = file_path:gsub('%/', '/ ')
     file_path = file_path:gsub('^%/', '')
+    if file_path == ' ' then
+        file_path = ''
+    end
 
     if not f.isempty(filename) then
         local default = false
