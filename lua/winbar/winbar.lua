@@ -34,11 +34,9 @@ local winbar_file = function()
     if file_path:find('^/') == nil then
         file_path = '/' .. file_path
     end
-    file_path = file_path:gsub('%/', '/ ')
+    local folder_icon = '󰉋'
+    file_path = file_path:gsub('%/', '/'..folder_icon..' ')
     file_path = file_path:gsub('^%/', '')
-    if file_path == ' ' then
-        file_path = ''
-    end
 
     if not f.isempty(filename) then
         local default = false
@@ -67,7 +65,8 @@ local winbar_file = function()
             end)
 
             for i = 1, #file_path_list do
-                value = value .. '%#' .. hl_winbar_path .. '#' .. file_path_list[i] .. ' ' .. opts.icons.separator .. ' %*'
+                -- value = value .. '%#' .. hl_winbar_path .. '#' .. file_path_list[i] .. ' ' .. opts.icons.separator .. ' %*'
+                value = value .. '%#' .. hl_winbar_path .. '#' .. file_path_list[i] .. opts.icons.separator .. ' %*'
             end
         end
         value = value .. file_icon
