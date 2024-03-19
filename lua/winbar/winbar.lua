@@ -49,10 +49,17 @@ local winbar_file = function()
         if status_web_devicons_ok then
             file_icon = web_devicons.get_icon(filename, file_type, { default = default })
             hl_winbar_file_icon = "DevIcon" .. file_type
+
         end
 
         if not file_icon then
             file_icon = opts.icons.file_icon_default
+        end
+
+        local devicon_ft = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID(hl_winbar_file_icon)), 'fg', 'gui')
+        if devicon_ft == '' then
+            local fg_hl_winbar_path = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID(hl_winbar_path)), 'fg', 'gui')
+            vim.api.nvim_set_hl(0, hl_winbar_file_icon, { fg = fg_hl_winbar_path })
         end
 
         file_icon = '%#' .. hl_winbar_file_icon .. '#' .. file_icon .. ' %*'
@@ -109,18 +116,24 @@ M.init = function()
     else
         vim.api.nvim_set_hl(0, hl_winbar_path, { fg = opts.colors.path })
     end
+    -- local fg_msgarea = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID('MsgArea')), 'fg', 'gui')
+    -- vim.api.nvim_set_hl(0, hl_winbar_path, { fg = fg_msgarea })
 
     if f.isempty(opts.colors.file_name) then
         hl_winbar_file = 'String'
     else
         vim.api.nvim_set_hl(0, hl_winbar_file, { fg = opts.colors.file_name })
     end
+    -- local fg_string = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID('String')), 'fg', 'gui')
+    -- vim.api.nvim_set_hl(0, hl_winbar_file, { fg = fg_string })
 
     if f.isempty(opts.colors.symbols) then
         hl_winbar_symbols = 'Function'
     else
         vim.api.nvim_set_hl(0, hl_winbar_symbols, { fg = opts.colors.symbols })
     end
+    -- local fg_function = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID('Function')), 'fg', 'gui')
+    -- vim.api.nvim_set_hl(0, hl_winbar_symbols, { fg = fg_function })
 end
 
 M.show_winbar = function()
